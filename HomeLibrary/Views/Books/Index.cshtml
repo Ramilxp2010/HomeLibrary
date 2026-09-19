@@ -1,0 +1,66 @@
+﻿@model IEnumerable<HomeLibrary.Models.Book>
+
+@{
+    ViewData["Title"] = "Домашняя библиотека";
+}
+
+<h1>Домашняя библиотека</h1>
+
+<p>
+    <a asp-action="Create" class="btn">Добавить книгу</a>
+</p>
+
+<form asp-action="Index" method="get">
+    <input type="text"
+           name="search"
+           value="@ViewBag.Search"
+           placeholder="Название, автор, оглавление..." />
+
+    <button type="submit">Поиск</button>
+
+    <a asp-action="Index">Сбросить</a>
+</form>
+
+<table>
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Год</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Title</td>
+                <td>@book.Author</td>
+                <td>@book.PublicationYear</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@book.Id">
+                        Просмотр
+                    </a>
+
+                    |
+
+                    <a asp-action="Edit" asp-route-id="@book.Id">
+                        Изменить
+                    </a>
+
+                    |
+
+                    <form asp-action="Delete"
+                          asp-route-id="@book.Id"
+                          method="post"
+                          style="display:inline"
+                          onsubmit="return confirm('Удалить книгу?');">
+
+                        <button type="submit">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

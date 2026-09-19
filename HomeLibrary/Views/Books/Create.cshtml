@@ -1,0 +1,48 @@
+﻿@model HomeLibrary.Models.Book
+
+@{
+    ViewData["Title"] = "Добавить книгу";
+}
+
+<h1>Добавить книгу</h1>
+
+<form asp-action="Create" method="post">
+
+    <div>
+        <label asp-for="Title"></label>
+        <input asp-for="Title" />
+        <span asp-validation-for="Title"></span>
+    </div>
+
+    <div>
+        <label asp-for="Author"></label>
+        <input asp-for="Author" />
+        <span asp-validation-for="Author"></span>
+    </div>
+
+    <div>
+        <label asp-for="PublicationYear"></label>
+        <input asp-for="PublicationYear" />
+        <span asp-validation-for="PublicationYear"></span>
+    </div>
+
+    <div>
+        <label asp-for="Contents">Оглавление XML</label>
+
+        <textarea
+            asp-for="Contents"
+            rows="15"
+            cols="80"></textarea>
+
+        <span asp-validation-for="Contents"></span>
+    </div>
+
+    <button type="submit">Сохранить</button>
+
+    <a asp-action="Index">Отмена</a>
+
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

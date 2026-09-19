@@ -1,0 +1,33 @@
+﻿@model HomeLibrary.Models.Book
+
+@{
+    ViewData["Title"] = "Книга";
+}
+
+<h1>@Model.Title</h1>
+
+<p>
+    <strong>Автор:</strong>
+    @Model.Author
+</p>
+
+<p>
+    <strong>Год издания:</strong>
+    @Model.PublicationYear
+</p>
+
+<h2>Оглавление</h2>
+
+<pre>@Model.Contents</pre>
+
+<p>
+    <a asp-action="Edit" asp-route-id="@Model.Id">
+        Изменить
+    </a>
+
+    |
+
+    <a asp-action="Index">
+        Назад к списку
+    </a>
+</p>
